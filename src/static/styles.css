@@ -124,10 +124,21 @@ section h3 {
   gap: 6px;
 }
 
-.participants-list li::before {
-  content: "\2022";
-  color: #5c6bc0;
-  font-weight: bold;
+.delete-btn {
+  margin-left: auto;
+  background: none;
+  border: none;
+  color: #c62828;
+  font-size: 1em;
+  line-height: 1;
+  padding: 0 2px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.15s;
+}
+
+.delete-btn:hover {
+  background-color: #ffcdd2;
 }
 
 .no-participants {
