@@ -21,16 +21,16 @@ document.addEventListener("DOMContentLoaded", () => {
         const spotsLeft = details.max_participants - details.participants.length;
 
         const participantsList = details.participants.length > 0
-          ? `<ul class="participants-list">${details.participants.map(p => `<li><span>${p}</span><button class="delete-btn" data-activity="${name}" data-email="${p}" title="Unregister">&times;</button></li>`).join("")}</ul>`
-          : `<p class="no-participants">No participants yet — be the first!</p>`;
+          ? `<ul class="participants-list">${details.participants.map(p => `<li><span>${p}</span><button class="delete-btn" data-activity="${name}" data-email="${p}" title="Abmelden">&times;</button></li>`).join("")}</ul>`
+          : `<p class="no-participants">Noch keine Teilnehmer – sei der Erste!</p>`;
 
         activityCard.innerHTML = `
           <h4>${name}</h4>
           <p>${details.description}</p>
-          <p><strong>Schedule:</strong> ${details.schedule}</p>
-          <p><strong>Availability:</strong> <span class="spots-badge ${spotsLeft === 0 ? 'full' : spotsLeft <= 3 ? 'limited' : 'open'}">${spotsLeft === 0 ? 'Full' : spotsLeft + ' spots left'}</span></p>
+          <p><strong>Zeitplan:</strong> ${details.schedule}</p>
+          <p><strong>Verfügbarkeit:</strong> <span class="spots-badge ${spotsLeft === 0 ? 'full' : spotsLeft <= 3 ? 'limited' : 'open'}">${spotsLeft === 0 ? 'Ausgebucht' : spotsLeft + ' Plätze frei'}</span></p>
           <div class="participants-section">
-            <strong>Participants (${details.participants.length}/${details.max_participants}):</strong>
+            <strong>Teilnehmer (${details.participants.length}/${details.max_participants}):</strong>
             ${participantsList}
           </div>
         `;
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
         activitySelect.appendChild(option);
       });
     } catch (error) {
-      activitiesList.innerHTML = "<p>Failed to load activities. Please try again later.</p>";
+      activitiesList.innerHTML = "<p>Aktivitäten konnten nicht geladen werden. Bitte versuche es später erneut.</p>";
       console.error("Error fetching activities:", error);
     }
   }
@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         signupForm.reset();
         fetchActivities();
       } else {
-        messageDiv.textContent = result.detail || "An error occurred";
+        messageDiv.textContent = result.detail || "Ein Fehler ist aufgetreten";
         messageDiv.className = "error";
       }
 
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
         messageDiv.classList.add("hidden");
       }, 5000);
     } catch (error) {
-      messageDiv.textContent = "Failed to sign up. Please try again.";
+      messageDiv.textContent = "Anmeldung fehlgeschlagen. Bitte versuche es erneut.";
       messageDiv.className = "error";
       messageDiv.classList.remove("hidden");
       console.error("Error signing up:", error);
